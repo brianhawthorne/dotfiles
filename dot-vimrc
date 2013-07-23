@@ -1,3 +1,31 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'vim-scripts/vibrantink'
+Bundle 'Lokaltog/vim-easymotion'
+" github asking for login...???
+Bundle 'kchmk/vim-coffee-script'
+Bundle 'klen/python-mode'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'Lokaltog/powerline'
+
+" vim-scripts repos
+"Bundle 'L9'
+"Bundle 'FuzzyFinder'
+"
+" non github repos
+"Bundle 'git://git.wincent.com/command-t.git'
+
 set t_Co=256
 syntax enable
 highlight Normal guibg=Black ctermbg=0 ctermfg=White
@@ -11,6 +39,9 @@ filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
+
+" disable folding
+set nofoldenable
 
 set backspace=eol,start,indent
 
@@ -53,6 +84,11 @@ endfunction
 
 " highlight search results
 set hlsearch
+
+" disable autocommenting for coffeescript files because inside a coffeescript
+" format string the hash has a different meaning and throws vim into a cpu
+" max freeze. 
+autocmd FileType coffee setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "ruby/rails
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
