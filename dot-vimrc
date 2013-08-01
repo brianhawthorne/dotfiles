@@ -1,5 +1,6 @@
-set nocompatible               " be iMproved
-filetype off                   " required!
+" This must be first, because it changes other options as side effect
+set nocompatible
+filetype off                   " required for vundle in vim < 7.3.430!
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -26,16 +27,16 @@ Bundle 'Lokaltog/powerline'
 " non github repos
 "Bundle 'git://git.wincent.com/command-t.git'
 
+" Enable filetype plugin
+filetype on
+filetype plugin on
+filetype indent on
+
 set t_Co=256
 syntax enable
 highlight Normal guibg=Black ctermbg=0 ctermfg=White
 
 au BufNewFile,BufRead *.mak set ft=mako
-
-" Enable filetype plugin
-filetype on
-filetype plugin on
-filetype indent on
 
 " Set to auto read when a file is changed from the outside
 set autoread
@@ -113,7 +114,7 @@ map <C-l> <C-W>l
 """"""""""""""""""""""""""""""
 
 function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
+    let curdir = substitute(getcwd(), '/home/hawthorne/', "~/", "g")
     return curdir
 endfunction
 
@@ -134,4 +135,10 @@ au BufRead,BufNewFile *.fs set filetype=fs
 au BufRead,BufNewFile *.fsx set filetype=fs
 
 :inoremap <C-u> <Esc>
+:inoremap <C-s> <esc>:w<cr>
+:noremap <C-s> :w<cr>
+
+" Make F1 behave like Esc
+map <F1> <Esc>
+imap <F1> <Esc>
 
